@@ -24,10 +24,10 @@ class ViewController: UIViewController {
         
         let thumbImageNormal = UIImage(named: "misc_57")
         //slider
-        slider.setThumbImage(thumbImageNormal, forState: .Normal)
+        slider.setThumbImage(thumbImageNormal, for: UIControlState())
         
         let thumbImageHighlighted = UIImage(named: "001_17")
-        slider.setThumbImage(thumbImageHighlighted, forState: .Highlighted)
+        slider.setThumbImage(thumbImageHighlighted, for: .highlighted)
             }
 
     
@@ -46,7 +46,7 @@ class ViewController: UIViewController {
     transition.type = kCATransitionFade
     transition.duration = 1
     transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
-    view.layer.addAnimation(transition, forKey: nil)
+    view.layer.add(transition, forKey: nil)
     }
     
     
@@ -80,7 +80,7 @@ class ViewController: UIViewController {
         //модуль
         var points = 100 - difference
         
-        round++
+        round += 1
         
         var phrase0 = "well done!"
         if difference  == 0 {
@@ -101,21 +101,21 @@ class ViewController: UIViewController {
              /*    + "\nThe target value is: \(targetValue)"
                     + "\nThe difference is: \(difference)"  */
         
-        let alert = UIAlertController(title: "\(phrase0)", message: message, preferredStyle: .Alert)
+        let alert = UIAlertController(title: "\(phrase0)", message: message, preferredStyle: .alert)
         
-        let action = UIAlertAction(title: "OK", style: .Default,
+        let action = UIAlertAction(title: "OK", style: .default,
                                                 handler: {action in
                                                                     self.startNewRound()
                                                                     self.updateLabels()})
         
         alert.addAction(action)
         
-        presentViewController(alert, animated: true, completion: nil)
+        present(alert, animated: true, completion: nil)
     }
     
     
     
-    @IBAction func sliderMoved (slider: UISlider) {
+    @IBAction func sliderMoved (_ slider: UISlider) {
         currentValue = lroundf(slider.value)
     }
     
